@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.primary-gradient {
+  @apply bg-gradient-to-l from-primary to-secondary;
+}
+
+.font-gradient {
+  @apply bg-clip-text text-center text-transparent;
+}
