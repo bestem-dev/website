@@ -22,12 +22,12 @@ const Home: NextPage = () => {
       <main className="flex flex-col justify-center">
         <div
           id="home"
-          className="bg-neutral-800 bg-[url('/images/chainbg.png')]
+          className="bg-neutral-800 bg-[url('/images/chainbg.webp')]
           bg-cover bg-blend-overlay"
         >
           <div className="mx-auto flex flex-col items-center justify-center gap-4 py-16 px-8 lg:w-2/3 lg:flex-row-reverse lg:justify-between lg:py-60 lg:px-0">
             <Image
-              src="/images/bestemiso.png"
+              src="/images/bestemiso.webp"
               alt="Bestem"
               width={375}
               height={402}
@@ -185,7 +185,7 @@ const Home: NextPage = () => {
         </div>
         <div
           id="mission"
-          className="flex flex-col items-center justify-center gap-8 bg-neutral-900 bg-[url('/images/MissionBg.png')] py-8 px-8 pt-32 md:flex-row"
+          className="flex flex-col items-center justify-center gap-8 bg-neutral-900 bg-[url('/images/MissionBg.webp')] py-8 px-8 pt-32 md:flex-row"
         >
           <div className="flex flex-col items-center justify-center gap-8 md:w-1/3 md:items-start">
             <div>
