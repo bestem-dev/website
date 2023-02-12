@@ -27,27 +27,34 @@ const TeamMemberProfile: FC<TeamMemberProfileProps> = ({
         alt={name}
         width={250}
         height={250}
+        sizes="(max-width: 640px) 150px, 250px"
         className="h-36 w-auto transition-transform hover:scale-105 lg:h-72"
       />
       <h3 className="text-center text-xl font-bold">{name}</h3>
       <h4 className="text-center">{role}</h4>
       <div className="flex items-center gap-4">
         <Link href={linkedin}>
-          <img
+          <Image
+            width={20}
+            height={20}
             src="/images/linkedin.svg"
             alt="linkedin"
             className="w-6 transition-transform hover:scale-105 hover:opacity-80"
           />
         </Link>
         <Link href={twitter}>
-          <img
+          <Image
+            width={20}
+            height={20}
             src="/images/twitter.svg"
             alt="twitter"
             className="w-6 transition-transform hover:scale-105 hover:opacity-80"
           />
         </Link>
         <Link href={email}>
-          <img
+          <Image
+            width={20}
+            height={20}
             src="/images/email.svg"
             alt="email"
             className="w-6 transition-transform hover:scale-105 hover:opacity-80"

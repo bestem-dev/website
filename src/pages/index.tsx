@@ -28,9 +28,11 @@ const Home: NextPage = () => {
           <div className="mx-auto flex flex-col items-center justify-center gap-4 py-16 px-8 lg:w-2/3 lg:flex-row-reverse lg:justify-between lg:py-60 lg:px-0">
             <Image
               src="/images/bestemiso.webp"
+              priority
               alt="Bestem"
               width={375}
               height={402}
+              sizes="(max-width: 375px) 100vw, 375px"
               className="w-2/3 transition-all duration-100 ease-in-out hover:animate-pulse md:w-1/3"
             />
             <div className="flex flex-col items-center gap-4 md:w-2/3 lg:w-1/3 lg:items-start lg:gap-12">

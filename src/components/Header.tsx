@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Menu, Transition } from "@headlessui/react";
 import { type NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 // import Link from "next/link";
@@ -18,9 +19,11 @@ const Header: NextPage = () => {
         <div className="mx-auto flex items-center justify-between gap-4 px-4 sm:w-2/3 sm:px-0">
           <div className="flex w-1/3 flex-shrink-0 items-center justify-start sm:w-1/4">
             <a href="#home">
-              <img
+              <Image
                 src="/images/bestem.svg"
                 alt="Bestem"
+                width={100}
+                height={30}
                 className=" max-h-10 md:w-2/3"
               />
             </a>
@@ -44,17 +47,32 @@ const Header: NextPage = () => {
           <ul className="flex flex-shrink items-center justify-end gap-4 sm:w-1/4 sm:justify-end">
             <li>
               <Link href="https://www.linkedin.com/company/bestem-dev">
-                <img src="/images/linkedin.svg" alt="LinkedIn" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/images/linkedin.svg"
+                  alt="LinkedIn"
+                />
               </Link>
             </li>
             <li>
               <Link href="https://twitter.com/bestemdev">
-                <img src="/images/twitter.svg" alt="Twitter" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/images/twitter.svg"
+                  alt="Twitter"
+                />
               </Link>
             </li>
             <li>
               <Link href="https://discord.gg/8bKWeayDbe">
-                <img src="/images/discord.svg" alt="Discord" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/images/discord.svg"
+                  alt="Discord"
+                />
               </Link>
             </li>
           </ul>
@@ -64,7 +82,11 @@ const Header: NextPage = () => {
             className="relative flex justify-end text-left  sm:w-1/4 md:hidden md:w-1/3"
           >
             <div>
-              <Menu.Button className="inline-flex w-full justify-center rounded-md border border-transparent bg-transparent px-4 py-2 text-sm font-medium text-white hover:bg-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+              <Menu.Button
+                aria-label="menu"
+                id="menuButton"
+                className="inline-flex w-full justify-center rounded-md border border-transparent bg-transparent px-4 py-2 text-sm font-medium text-white hover:bg-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              >
                 {({ open }) =>
                   open ? (
                     <svg
