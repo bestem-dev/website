@@ -83,16 +83,13 @@ const Home: NextPage = () => {
             Full development of MVPs. <br className="md:hidden" />
             From Idea to market.
           </h3>
-          <div
-            className="grid grid-cols-2 gap-8 md:w-2/3 md:grid-cols-4
-          "
-          >
+          <div className="grid grid-cols-2 gap-8 md:w-2/3 md:grid-cols-4">
             <div className="flex flex-col items-center justify-center gap-4">
               <Image
                 src="/images/whitepaper.svg"
                 alt="Idea"
-                width={0}
-                height={0}
+                width={20}
+                height={20}
                 className="w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
@@ -103,8 +100,8 @@ const Home: NextPage = () => {
               <Image
                 src="/images/landingPage.svg"
                 alt="Idea"
-                width={0}
-                height={0}
+                width={20}
+                height={20}
                 className="w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
@@ -115,8 +112,8 @@ const Home: NextPage = () => {
               <Image
                 src="/images/uxResearch.svg"
                 alt="Idea"
-                width={0}
-                height={0}
+                width={20}
+                height={20}
                 className="w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
@@ -127,8 +124,8 @@ const Home: NextPage = () => {
               <Image
                 src="/images/mvpSmartContracts.svg"
                 alt="Idea"
-                width={0}
-                height={0}
+                width={20}
+                height={20}
                 className="w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
