@@ -449,6 +449,7 @@ const Home: NextPage = () => {
                 title="30 N Gould St Ste R, Sheridan, 82801"
                 aria-label="30 N Gould St Ste R, Sheridan, 82801"
                 className="h-44 w-full rounded-3xl grayscale md:h-72"
+                loading="lazy"
               ></iframe>
             </div>
           </div>
