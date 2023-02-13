@@ -16,6 +16,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
+      <link rel="icon" href="/images/favicon.png" />
       <body className="font-sans text-white">
         <Main />
         <NextScript />
