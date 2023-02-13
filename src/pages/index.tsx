@@ -16,15 +16,30 @@ const Home: NextPage = () => {
       <Head>
         <title>Bestem</title>
         <meta name="description" content="Web3 and AI software factory" />
-        <meta property="og:type" content="article" />
+        {/* <!-- Facebook Meta Tags --> */}
+        <meta property="og:url" content="https://bestem.dev" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Bestem" />
         <meta
           property="og:description"
           content="Web3 and AI software factory"
         />
-        <meta property="og:url" content="https://bestem.dev" />
         <meta
           property="og:image"
+          content="https://bestem.dev/images/bestemlogo.png"
+        />
+
+        {/* <!-- Twitter Meta Tags --> */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="bestem.dev" />
+        <meta property="twitter:url" content="https://bestem.dev" />
+        <meta name="twitter:title" content="Bestem" />
+        <meta
+          name="twitter:description"
+          content="Web3 and AI software factory"
+        />
+        <meta
+          name="twitter:image"
           content="https://bestem.dev/images/bestemlogo.png"
         />
       </Head>
