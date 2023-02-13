@@ -352,14 +352,14 @@ const Home: NextPage = () => {
               title="ImpactOnChain"
               description="CEX Crypto-FIAT."
               image="/images/prevWorks/impactonchain.png"
-              link=""
+              link="https://www.figma.com/file/8YJSLHkIn6jEuFiraJBKBa/ImpactOnChain-UX?node-id=0%3A1&t=XyKSjp1Pwz3Pc3y4-0"
               services="Ux research, prototype, and MVP development."
             />
             <ProjectCard
               title="Tokedu"
               description="Ed-tech gaming."
               image="/images/prevWorks/tokeducard.png"
-              link=""
+              link="https://www.figma.com/proto/WSkKqFV8urxkzXCfNzDz8U/Tokedu-2.0?node-id=2%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A2"
               services="Ed-Content creation, UX research and prototype."
             />
             <ProjectCard
