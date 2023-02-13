@@ -22,7 +22,8 @@ const Home: NextPage = () => {
         <meta property="og:title" content="Bestem" />
         <meta
           property="og:description"
-          content="Web3 and AI software factory"
+          content="Web3 and AI software factory. We help founders to validate their web3 and AI ideas through the
+                technological and full development of minimum viable products (MVP)"
         />
         <meta
           property="og:image"
@@ -36,7 +37,8 @@ const Home: NextPage = () => {
         <meta name="twitter:title" content="Bestem" />
         <meta
           name="twitter:description"
-          content="Web3 and AI software factory"
+          content="Web3 and AI software factory. We help founders to validate their web3 and AI ideas through the
+                technological and full development of minimum viable products (MVP)"
         />
         <meta
           name="twitter:image"
@@ -69,7 +71,7 @@ const Home: NextPage = () => {
                 FACTORY
               </h1>
               <p className="text-center font-light lg:text-left lg:text-xl">
-                We help founders to validate their web3 ideas through the
+                We help founders to validate their web3 and AI ideas through the
                 technological and full{" "}
                 <b className="font-medium">
                   development of minimum viable products (MVP)
