@@ -37,8 +37,8 @@ const Home: NextPage = () => {
             />
             <div className="flex flex-col items-center gap-4 md:w-2/3 lg:w-1/3 lg:items-start lg:gap-12">
               <h1 className="lg:leading-0 text-center text-[47px] font-black leading-10 lg:text-left lg:text-[96px] lg:leading-[0.6]">
-                <span className="font-gradient primary-gradient text-7xl lg:text-[96px]">
-                  WEB3{" "}
+                <span className="font-gradient primary-gradient text-5xl lg:text-[96px]">
+                  AI/WEB3{" "}
                 </span>
                 <br />
                 FACTORY
