@@ -367,7 +367,7 @@ const Home: NextPage = () => {
               description="Web3 prop-tech (real state tokens)"
               image="/images/prevWorks/mockupbetrusty.png"
               link="https://www.figma.com/file/qsnsSUKg7dIkdbhPfnVz1H/BeTrusty-UX?t=qzZPQ5ddLqDBQe5f-0"
-              services="Branding, OpenAI API integration, prompt enginering and front-end design."
+              services="Technical consultancy, UX research and prototypes."
             />
           </div>
         </div>
