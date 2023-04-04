@@ -201,7 +201,7 @@ const Home: NextPage = () => {
             />
             <TeamMemberProfile
               name="Francesco gentile"
-              role="Full-Stack & Smart Contact Developer"
+              role="Full-Stack & Smart Contract Developer"
               image="/images/FrancescoGentile.png"
               linkedin="https://www.linkedin.com/in/eyon-dev/"
               twitter="https://twitter.com/eyondev"
