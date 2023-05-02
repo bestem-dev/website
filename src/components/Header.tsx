@@ -18,7 +18,7 @@ const Header: NextPage = () => {
       <header className="t-0 l-0 margin-b-20 primary-gradient fixed z-50 flex h-20 w-screen flex-row items-center">
         <div className="mx-auto flex items-center justify-between gap-4 px-4 sm:w-2/3 sm:px-0">
           <div className="flex w-1/3 flex-shrink-0 items-center justify-start sm:w-1/4">
-            <a href="#home">
+            <Link href="/#home">
               <Image
                 src="/images/bestem.svg"
                 alt="Bestem"
@@ -26,7 +26,7 @@ const Header: NextPage = () => {
                 height={30}
                 className=" max-h-10 md:w-2/3"
               />
-            </a>
+            </Link>
           </div>
 
           <ul className="hidden gap-2 md:flex">

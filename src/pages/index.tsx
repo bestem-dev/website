@@ -3,12 +3,12 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "../components/Footer";
-import GradientLine from "../components/GradientLine";
-import Header from "../components/Header";
-import LinkButton from "../components/LinkButton";
-import ProjectCard from "../components/ProjectCard";
-import TeamMemberProfile from "../components/TeamProfile";
+import Footer from "@/components/Footer";
+import GradientLine from "@/components/GradientLine";
+import Header from "@/components/Header";
+import LinkButton from "@/components/LinkButton";
+import ProjectCard from "@/components/ProjectCard";
+import TeamMemberProfile from "@/components/TeamProfile";
 
 const Home: NextPage = () => {
   return (
@@ -119,7 +119,7 @@ const Home: NextPage = () => {
                 alt="Idea"
                 width={20}
                 height={20}
-                className="w-1/3 md:w-1/4"
+                className="h-24 w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
                 Whitepaper and tokenomics development consultancy.
@@ -131,7 +131,7 @@ const Home: NextPage = () => {
                 alt="Idea"
                 width={20}
                 height={20}
-                className="w-1/3 md:w-1/4"
+                className="h-24 w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
                 Landing page and pitch-deck design.
@@ -143,7 +143,7 @@ const Home: NextPage = () => {
                 alt="Idea"
                 width={20}
                 height={20}
-                className="w-1/3 md:w-1/4"
+                className="h-24 w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
                 UX Research, Prototyping and Iteration.
@@ -155,7 +155,7 @@ const Home: NextPage = () => {
                 alt="Idea"
                 width={20}
                 height={20}
-                className="w-1/3 md:w-1/4"
+                className="h-24 w-1/3 md:w-1/4"
               />
               <h4 className="text-center">
                 Development of MVP and Smart-Contracts.
