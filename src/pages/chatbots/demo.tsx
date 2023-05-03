@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { type NextPage } from "next";
 import Head from "next/head";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import type { FC } from "react";
 import { ChatWindow } from "@/components/Chat";
 
 const Home: NextPage = () => {

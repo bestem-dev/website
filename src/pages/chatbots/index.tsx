@@ -2,13 +2,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import Footer from "@/components/Footer";
 import GradientLine from "@/components/GradientLine";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
-import ProjectCard from "@/components/ProjectCard";
-import TeamMemberProfile from "@/components/TeamProfile";
 
 const Home: NextPage = () => {
   return (

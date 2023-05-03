@@ -1,5 +1,7 @@
+import { Transition } from "@headlessui/react";
 import Image from "next/image";
-import { FC, useCallback, useEffect, useReducer, useState } from "react";
+import type { FC } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 
 interface Message {
   message: string;
@@ -23,17 +25,7 @@ export const ChatWindow = () => {
         },
       ];
     },
-    [
-      {
-        message: "Hello! I'm BestemBot",
-        isBot: true,
-      },
-      {
-        message: "What can I help you with today?",
-        isBot: true,
-        isChain: true,
-      },
-    ]
+    []
   );
   const [currentMessage, setCurrentMessage] = useState("");
 
@@ -43,6 +35,32 @@ export const ChatWindow = () => {
     setCurrentMessage("");
   }, [currentMessage]);
 
+  const onMsgShow = useCallback(() => {
+    const objDiv = document.getElementById("chat-bottom");
+    if (objDiv) {
+      objDiv.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => {
+      addMessage({
+        message: "Hello! I'm BestemBot",
+        isBot: true,
+      });
+    }, 0);
+    const t2 = setTimeout(() => {
+      addMessage({
+        message: "What can I help you with today?",
+        isBot: true,
+      });
+    }, 1000);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
   useEffect(() => {
     function onEvent(event: KeyboardEvent) {
       if (event.key === "Enter" && !event.shiftKey) {
@@ -66,10 +84,14 @@ export const ChatWindow = () => {
         />
         <h1 className="px-4 text-xl">BestemBot</h1>
       </div>
-      <div className="h-full overflow-y-scroll bg-neutral-800 pb-4">
+      <div
+        id="messageBoard"
+        className="h-full overflow-x-hidden overflow-y-scroll bg-neutral-800 pb-4"
+      >
         {messages.map((message, index) => (
-          <ChatMessage key={index} {...message} />
+          <ChatMessage key={index} {...message} onShow={onMsgShow} />
         ))}
+        <span id="chat-bottom"></span>
       </div>
       <div className="flex h-12 justify-between rounded-b-lg bg-neutral-500 align-middle">
         <input
@@ -96,9 +118,32 @@ interface ChatMessageProps {
   message: string;
   isBot: boolean;
   isChain?: boolean;
+  onShow?: () => void;
 }
 
-const ChatMessage: FC<ChatMessageProps> = ({ message, isBot, isChain }) => {
+const ChatMessage: FC<ChatMessageProps> = ({
+  message,
+  isBot,
+  isChain,
+  onShow,
+}) => {
+  const [isShowing, setIsShowing] = useState(false);
+  useEffect(() => {
+    if (onShow && isShowing) {
+      setTimeout(() => {
+        onShow();
+      }, 0); // wait for render
+    }
+  }, [isShowing, onShow]);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setIsShowing(true);
+    }, 100);
+    return () => {
+      clearTimeout(t);
+    };
+  }, []);
   return (
     <div
       className={
@@ -109,22 +154,33 @@ const ChatMessage: FC<ChatMessageProps> = ({ message, isBot, isChain }) => {
         (isChain ? "pt-[0.25rem]" : "")
       }
     >
-      <div
-        className={
-          "rounded-b-xl bg-neutral-600 px-4 pb-2" +
-          " " +
-          (isBot ? "rounded-tr-xl" : "rounded-tl-xl") +
-          " " +
-          (isChain ? "rounded-xl pt-2" : "")
-        }
+      <Transition
+        show={isShowing}
+        enter="transition ease-in-out duration-300 transform"
+        enterFrom={(isBot ? "-" : "") + "translate-x-full"}
+        enterTo="translate-x-0"
+        leave="transition ease-in-out duration-300 transform"
+        leaveFrom="translate-x-0"
+        leaveTo={(isBot ? "-" : "") + "translate-x-full"}
+        className="max-w-[90%] md:max-w-[80%]"
       >
-        {!isChain && (
-          <span className="text-xs font-thin text-neutral-300">
-            {isBot ? "BestemBot" : "You"}
-          </span>
-        )}
-        <p>{message}</p>
-      </div>
+        <div
+          className={
+            "rounded-b-xl bg-neutral-600 px-4 pb-2" +
+            " " +
+            (isBot ? "rounded-tr-xl" : "rounded-tl-xl") +
+            " " +
+            (isChain ? "rounded-xl pt-2" : "")
+          }
+        >
+          {!isChain && (
+            <span className="text-xs font-thin text-neutral-300">
+              {isBot ? "BestemBot" : "You"}
+            </span>
+          )}
+          <p>{message}</p>
+        </div>
+      </Transition>
     </div>
   );
 };
