@@ -9,6 +9,11 @@ interface Message {
 }
 
 export const ChatWindow = () => {
+  const playSound = useCallback(() => {
+    const notificationSound = new Audio("/sound/msg.wav");
+    console.log("Sound played");
+    notificationSound.play().catch((err) => console.log(err));
+  }, []);
   const [messages, addMessage] = useReducer(
     (messages: ChatMessageProps[], message: Message) => {
       let isChain;
@@ -40,8 +45,9 @@ export const ChatWindow = () => {
         message: "I'm sorry, I don't understand",
         isBot: true,
       });
+      playSound();
     }, 1000);
-  }, [currentMessage]);
+  }, [currentMessage, playSound]);
 
   const onMsgShow = useCallback(() => {
     const objDiv = document.getElementById("chat-bottom");
@@ -135,25 +141,25 @@ const ChatMessage: FC<ChatMessageProps> = ({
   isChain,
   onShow,
 }) => {
+  console.log("Rendering message", message);
   const [isShowing, setIsShowing] = useState(false);
-  useEffect(() => {
-    if (onShow && isShowing) {
-      const timeout = setTimeout(() => {
-        onShow();
-      }, 0); // wait for render
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-  }, [isShowing, onShow]);
 
   useEffect(() => {
     const t = setTimeout(() => {
       setIsShowing(true);
+      if (onShow) {
+        const timeout = setTimeout(() => {
+          onShow();
+        }, 10); // wait for render
+        return () => {
+          clearTimeout(timeout);
+        };
+      }
     }, 0);
     return () => {
       clearTimeout(t);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div
