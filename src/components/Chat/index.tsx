@@ -33,6 +33,14 @@ export const ChatWindow = () => {
     if (!currentMessage) return;
     addMessage({ message: currentMessage, isBot: false });
     setCurrentMessage("");
+
+    // For testing purposes
+    setTimeout(() => {
+      addMessage({
+        message: "I'm sorry, I don't understand",
+        isBot: true,
+      });
+    }, 1000);
   }, [currentMessage]);
 
   const onMsgShow = useCallback(() => {
@@ -74,7 +82,7 @@ export const ChatWindow = () => {
   }, [sendMessage]);
   return (
     <div className="flex h-full w-full flex-col justify-between">
-      <div className="flex h-16 items-center justify-start bg-neutral-700 px-4">
+      <div className="z-10 flex h-16 items-center justify-start bg-neutral-700 px-4 shadow-md">
         <Image
           className="rounded-full"
           src="/images/bestemlogo.png"
@@ -103,7 +111,7 @@ export const ChatWindow = () => {
           onClick={sendMessage}
           disabled={!currentMessage}
           className={
-            "bg-secondary px-8 py-2" +
+            "bg-secondary px-8 py-2 transition-colors duration-200" +
             (currentMessage ? "" : " text-neutral-500")
           }
         >
