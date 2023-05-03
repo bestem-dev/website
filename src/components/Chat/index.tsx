@@ -138,16 +138,19 @@ const ChatMessage: FC<ChatMessageProps> = ({
   const [isShowing, setIsShowing] = useState(false);
   useEffect(() => {
     if (onShow && isShowing) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         onShow();
       }, 0); // wait for render
+      return () => {
+        clearTimeout(timeout);
+      };
     }
   }, [isShowing, onShow]);
 
   useEffect(() => {
     const t = setTimeout(() => {
       setIsShowing(true);
-    }, 100);
+    }, 0);
     return () => {
       clearTimeout(t);
     };
@@ -155,7 +158,7 @@ const ChatMessage: FC<ChatMessageProps> = ({
   return (
     <div
       className={
-        "flex w-full rounded-t-lg px-4 pt-4" +
+        "flex w-full px-4 pt-4" +
         " " +
         (isBot ? "justify-start" : "justify-end") +
         " " +
