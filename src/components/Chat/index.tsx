@@ -11,7 +11,6 @@ interface Message {
 export const ChatWindow = () => {
   const playSound = useCallback(() => {
     const notificationSound = new Audio("/sound/msg.wav");
-    console.log("Sound played");
     notificationSound.play().catch((err) => console.log(err));
   }, []);
   const [messages, addMessage] = useReducer(
@@ -141,7 +140,6 @@ const ChatMessage: FC<ChatMessageProps> = ({
   isChain,
   onShow,
 }) => {
-  console.log("Rendering message", message);
   const [isShowing, setIsShowing] = useState(false);
 
   useEffect(() => {
