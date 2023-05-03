@@ -9,3 +9,20 @@
 .font-gradient {
   @apply bg-clip-text text-center text-transparent;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(64 64 64) rgb(82 82 82);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+  @apply bg-neutral-800;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-neutral-500;
+  border-radius: 2px;
+}

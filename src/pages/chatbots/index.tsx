@@ -75,7 +75,7 @@ const Home: NextPage = () => {
                 implementing{" "}
                 <b className="font-medium">LLM-Agent driven chatbots</b>.
               </p>
-              <LinkButton to={"#services"}>
+              <LinkButton to={"/chatbots/demo"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
