@@ -168,11 +168,11 @@ const ChatMessage: FC<ChatMessageProps> = ({
       <Transition
         show={isShowing}
         enter="transition ease-in-out duration-300 transform"
-        enterFrom={(isBot ? "-" : "") + "translate-x-full"}
+        enterFrom={isBot ? "-translate-x-full" : "translate-x-full"}
         enterTo="translate-x-0"
         leave="transition ease-in-out duration-300 transform"
         leaveFrom="translate-x-0"
-        leaveTo={(isBot ? "-" : "") + "translate-x-full"}
+        leaveTo={isBot ? "-translate-x-full" : "translate-x-full"}
         className="max-w-[90%] md:max-w-[80%]"
       >
         <div
