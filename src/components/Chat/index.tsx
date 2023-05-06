@@ -1,18 +1,60 @@
+import { useNotificationSound } from "@/hooks/notification";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import type { FC } from "react";
 import { useCallback, useEffect, useReducer, useState } from "react";
+import { rasaSocket } from "@/socket";
 
 interface Message {
   message: string;
   isBot: boolean;
+  attachment?: Attachment;
+}
+
+interface Attachment {
+  type: string;
+  payload: {
+    src: string;
+  };
 }
 
 export const ChatWindow = () => {
-  const playSound = useCallback(() => {
-    const notificationSound = new Audio("/sound/msg.wav");
-    notificationSound.play().catch((err) => console.log(err));
-  }, []);
+  const playSound = useNotificationSound();
+  //Socket connection
+  const [isConnected, setIsConnected] = useState(rasaSocket.connected);
+
+  useEffect(() => {
+    function onConnect() {
+      console.log("Connected to Rasa socket");
+      setIsConnected(true);
+    }
+
+    function onDisconnect() {
+      console.log("Disconnected from Rasa socket");
+      setIsConnected(false);
+    }
+
+    function onBotMsg(value: { text?: string; attachment?: Attachment }) {
+      console.log(value);
+      addMessage({
+        message: value.text || "",
+        attachment: value.attachment,
+        isBot: true,
+      });
+      playSound();
+    }
+
+    rasaSocket.on("connect", onConnect);
+    rasaSocket.on("disconnect", onDisconnect);
+    rasaSocket.on("bot_msg", onBotMsg);
+
+    return () => {
+      rasaSocket.off("connect", onConnect);
+      rasaSocket.off("disconnect", onDisconnect);
+      rasaSocket.off("bot_msg", onBotMsg);
+    };
+  }, [playSound]);
+
   const [messages, addMessage] = useReducer(
     (messages: ChatMessageProps[], message: Message) => {
       let isChain;
@@ -20,59 +62,42 @@ export const ChatWindow = () => {
       if (lastMessage) {
         isChain = message.isBot == lastMessage.isBot;
       }
+      console.log(message);
       return [
         ...messages,
         {
-          message: message.message,
-          isBot: message.isBot,
+          ...message,
           isChain: isChain,
         },
       ];
     },
-    []
+    [
+      {
+        message: "Hello! I'm BestemBot",
+        isBot: true,
+        isChain: false,
+      },
+      {
+        message: "What can I help you with today?",
+        isBot: true,
+        isChain: true,
+      },
+    ]
   );
   const [currentMessage, setCurrentMessage] = useState("");
 
   const sendMessage = useCallback(() => {
     if (!currentMessage) return;
+    rasaSocket.emit("user_msg", { message: currentMessage });
     addMessage({ message: currentMessage, isBot: false });
     setCurrentMessage("");
-
-    // For testing purposes
-    setTimeout(() => {
-      addMessage({
-        message: "I'm sorry, I don't understand",
-        isBot: true,
-      });
-      playSound();
-    }, 1000);
-  }, [currentMessage, playSound]);
+  }, [currentMessage]);
 
   const onMsgShow = useCallback(() => {
     const objDiv = document.getElementById("chat-bottom");
     if (objDiv) {
       objDiv.scrollIntoView({ behavior: "smooth" });
     }
-  }, []);
-
-  useEffect(() => {
-    const t1 = setTimeout(() => {
-      addMessage({
-        message: "Hello! I'm BestemBot",
-        isBot: true,
-      });
-    }, 0);
-    const t2 = setTimeout(() => {
-      addMessage({
-        message: "What can I help you with today?",
-        isBot: true,
-      });
-    }, 1000);
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
   }, []);
   useEffect(() => {
     function onEvent(event: KeyboardEvent) {
@@ -114,7 +139,7 @@ export const ChatWindow = () => {
         ></input>
         <button
           onClick={sendMessage}
-          disabled={!currentMessage}
+          disabled={isConnected && !currentMessage}
           className={
             "bg-secondary px-8 py-2 transition-colors duration-200" +
             (currentMessage ? "" : " text-neutral-500")
@@ -130,6 +155,7 @@ export const ChatWindow = () => {
 interface ChatMessageProps {
   message: string;
   isBot: boolean;
+  attachment?: Attachment;
   isChain?: boolean;
   onShow?: () => void;
 }
@@ -137,6 +163,7 @@ interface ChatMessageProps {
 const ChatMessage: FC<ChatMessageProps> = ({
   message,
   isBot,
+  attachment,
   isChain,
   onShow,
 }) => {
@@ -181,7 +208,7 @@ const ChatMessage: FC<ChatMessageProps> = ({
       >
         <div
           className={
-            "rounded-b-xl bg-neutral-600 px-4 pb-2" +
+            "rounded-b-xl bg-neutral-600 px-1 pb-1 pt-1" +
             " " +
             (isBot ? "rounded-tr-xl" : "rounded-tl-xl") +
             " " +
@@ -189,11 +216,20 @@ const ChatMessage: FC<ChatMessageProps> = ({
           }
         >
           {!isChain && (
-            <span className="text-xs font-thin text-neutral-300">
+            <span className="px-2 text-xs font-thin text-neutral-300">
               {isBot ? "BestemBot" : "You"}
             </span>
           )}
-          <p>{message}</p>
+          {message && <p className="px-3 pb-1">{message}</p>}
+          {attachment && attachment.type === "image" && (
+            <Image
+              src={attachment.payload.src}
+              alt="Attached Image"
+              width={300}
+              height={300}
+              className="rounded-[8px]"
+            />
+          )}
         </div>
       </Transition>
     </div>
